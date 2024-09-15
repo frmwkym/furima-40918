@@ -46,23 +46,23 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column         | Type       | Options     |
-| -------------- | ---------- | ----------- |
-| name           | string     | null: false |
-| condition      | references | null: false, foreign_key: true |
-| category       | references | null: false, foreign_key: true |
-| shipping_fee   | references | null: false, foreign_key: true |
-| explanation    | text       | null: false |
-| prefecture     | references | null: false, foreign_key: true |
-| delivery_time  | references | null: false, foreign_key: true |
-| price          | integer    | null: false |
-| user           | references | null: false, foreign_key: true |
+| Column           | Type       | Options     |
+| ---------------- | ---------- | ----------- |
+| name             | string     | null: false |
+| condition_id     | integer    | null: false |
+| category_id      | integer    | null: false |
+| shipping_fee_id  | integer    | null: false |
+| explanation      | text       | null: false |
+| prefecture_id    | integer    | null: false |
+| delivery_time_id | integer    | null: false |
+| price            | integer    | null: false |
+| user             | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- has_one  :shipping_addresses
-- belongs_to :users
+- has_one  :shipping_address
+- belongs_to :user
 
 ## shipping_addresses テーブル
 
@@ -79,7 +79,7 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :purchase_records
+- belongs_to :purchase_record
 
 ## purchase_records テーブル
 
@@ -90,5 +90,5 @@ Things you may want to cover:
 
 ### Association
 
-- has_one  :shipping_addresses
+- has_one  :shipping_address
 - has_many :users
