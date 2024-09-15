@@ -46,48 +46,47 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column              | Type    | Options     |
-| ------------------- | ------- | ----------- |
-| name                | string  | null: false |
-| condition_id        | integer | null: false |
-| category_id         | integer | null: false |
-| shipping_fee_id     | integer | null: false |
-| explanation         | string  | null: false |
-| prefecture_id       | integer | null: false |
-| delivery_time_id    | integer | null: false |
-| price               | integer | null: false |
-| user_id             | integer | null: false |
+| Column         | Type       | Options     |
+| -------------- | ---------- | ----------- |
+| name           | string     | null: false |
+| condition      | references | null: false, foreign_key: true |
+| category       | references | null: false, foreign_key: true |
+| shipping_fee   | references | null: false, foreign_key: true |
+| explanation    | text       | null: false |
+| prefecture     | references | null: false, foreign_key: true |
+| delivery_time  | references | null: false, foreign_key: true |
+| price          | integer    | null: false |
+| user           | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - has_one  :shipping_addresses
-- has_many :users
+- belongs_to :users
 
 ## shipping_addresses テーブル
 
-| Column              | Type    | Options     |
-| ------------------- | ------- | ----------- |
-| post_code           | integer | null: false |
-| prefecture_id       | integer | null: false |
-| city                | string  | null: false |
-| town                | string  | null: false |
-| number              | string  | null: false |
-| building_name       | string  |
-| tel                 | integer | null: false |
-| purchase_record_id  | integer | null: false |
+| Column              | Type       | Options     |
+| ------------------- | ---------- | ----------- |
+| post_code           | string     | null: false |
+| prefecture_id       | integer    | null: false |
+| city                | string     | null: false |
+| town                | string     | null: false |
+| number              | string     | null: false |
+| building_name       | string     |
+| tel                 | string     | null: false |
+| purchase_record     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :shipping_addresses
 - belongs_to :purchase_records
 
 ## purchase_records テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| item_id       | integer | null: false |
-| user_id       | integer | null: false |
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| item          | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 
