@@ -27,69 +27,69 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| email              | string | null: false, unique: true |
-| encrypted_password | string | null: false |
-| full_name          | string | null: false |
-| date_of_birth      | string | null: false |
+| Column                       | Type   | Options     |
+| ---------------------------- | ------ | ----------- |
+| name                         | string | null: false |
+| email                        | string | null: false, unique: true |
+| encrypted_password           | string | null: false |
+| last_name                    | string | null: false |
+| first_name                   | string | null: false |
+| last_name_phonetic_spelling  | string | null: false |
+| first_name_phonetic_spelling | string | null: false |
+| date_of_birth                | date   | null: false |
 
 
 ### Association
 
 - has_many :items
-- has_many :shipping address
+- has_many :shipping_addresses
 
 ## items テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| photo              | photo  | null: false |
-| condition          | string | null: false |
-| category           | string | null: false |
-| shipping_fee       | string | null: false |
-| explanation        | string | null: false |
-| region_of_origin   | string | null: false |
-| delivery_time      | string | null: false |
-| price              | string | null: false |
-| seller             | string | null: false |
+| Column              | Type    | Options     |
+| ------------------- | ------- | ----------- |
+| name                | string  | null: false |
+| condition_id        | integer | null: false |
+| category_id         | integer | null: false |
+| shipping_fee_id     | integer | null: false |
+| explanation         | string  | null: false |
+| prefecture_id       | integer | null: false |
+| delivery_time_id    | integer | null: false |
+| price               | integer | null: false |
+| user_id             | integer | null: false |
 
 
 ### Association
 
-- has_one  :shipping address
-- has_many :user
+- has_one  :shipping_addresses
+- has_many :users
 
-## shipping address テーブル
+## shipping_addresses テーブル
 
-| Column        | Type   | Options     |
-| --------------| ------ | ----------- |
-| post_code     | string | null: false |
-| prefecture    | string | null: false |
-| city          | string | null: false |
-| town          | string | null: false |
-| number        | string | null: false |
-| building_name | string | null: false |
-| tel           | string | null: false |
-
-### Association
-
-- belongs_to :shipping address
-- belongs_to :purchase record
-
-## purchase records テーブル
-
-| Column        | Type   | Options     |
-| --------------| ------ | ----------- |
-| item_name     | string | null: false |
-| photo         | string | null: false |
-| price         | string | null: false |
-| shipping_fee  | string | null: false |
-| buyer         | string | null: false |
+| Column              | Type    | Options     |
+| ------------------- | ------- | ----------- |
+| post_code           | integer | null: false |
+| prefecture_id       | integer | null: false |
+| city                | string  | null: false |
+| town                | string  | null: false |
+| number              | string  | null: false |
+| building_name       | string  |
+| tel                 | integer | null: false |
+| purchase_record_id  | integer | null: false |
 
 ### Association
 
-- has_one  :shipping address
-- has_many :user
+- belongs_to :shipping_addresses
+- belongs_to :purchase_records
+
+## purchase_records テーブル
+
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| item_id       | integer | null: false |
+| user_id       | integer | null: false |
+
+### Association
+
+- has_one  :shipping_addresses
+- has_many :users
