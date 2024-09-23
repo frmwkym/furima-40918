@@ -50,6 +50,13 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password must include both letters and numbers')
       end
 
+      it '全角文字を含むpasswordでは登録できない' do
+        @user.password = 'aaaaaaａ'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password must include both letters and numbers')
+      end
+
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = '123456'
         @user.password_confirmation = '1234567'
@@ -76,10 +83,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
 
+      it 'last_nameに半角文字が含まれていると登録できない' do
+        @user.last_name = 'a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name Please use full-width characters only')
+      end
+
       it 'first_nameが空では登録できない' do
         @user.first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank")
+      end
+
+      it 'first_nameに半角文字が含まれていると登録できない' do
+        @user.first_name = 'a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name Please use full-width characters only')
       end
 
       it 'last_name_phonetic_spellingが空では登録できない' do
@@ -88,10 +107,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name phonetic spelling can't be blank")
       end
 
+      it 'last_name_phonetic_spellingにカタカナ以外が含まれていると登録できない' do
+        @user.last_name_phonetic_spelling = 'a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name phonetic spelling Please use only katakana')
+      end
+
       it 'first_name_phonetic_spellingが空では登録できない' do
         @user.first_name_phonetic_spelling = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name phonetic spelling can't be blank")
+      end
+
+      it 'first_name_phonetic_spellingにカタカナ以外が含まれていると登録できない' do
+        @user.first_name_phonetic_spelling = 'a'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name phonetic spelling Please use only katakana')
       end
 
       it 'date_of_birthが空では登録できない' do
