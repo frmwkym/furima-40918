@@ -36,6 +36,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    return unless current_user.id == @item.user.id
+
+    @item.destroy
+    redirect_to root_path
+  end
+
   private
 
   def item_params
