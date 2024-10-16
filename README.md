@@ -61,7 +61,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_one  :shipping_address
+- has_one  :purchase_record
 - belongs_to :user
 
 ## shipping_addresses テーブル
