@@ -37,7 +37,7 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("City and town can't be blank")
       end
       it 'numberが空では購入できない' do
-        @purchase_address.number = ''
+        @purchase_address.number = nil
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Number can't be blank")
       end

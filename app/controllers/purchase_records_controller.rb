@@ -6,6 +6,8 @@ class PurchaseRecordsController < ApplicationController
     @item = Item.find(params[:item_id])
     if current_user.id == @item.user.id
       redirect_to root_path
+    elsif @item.purchase_record.present?
+      redirect_to root_path
     else
       @purchase_address = PurchaseAddress.new
     end
