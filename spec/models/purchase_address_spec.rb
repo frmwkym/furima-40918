@@ -58,17 +58,17 @@ RSpec.describe PurchaseAddress, type: :model do
       it '電話番号が9桁以下では登録できない' do
         @purchase_address.tel = '0'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Tel is invalid.')
+        expect(@purchase_address.errors.full_messages).to include('Tel is invalid')
       end
       it '電話番号が12桁以上では登録できない' do
         @purchase_address.tel = '0000000000000000'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Tel is invalid.')
+        expect(@purchase_address.errors.full_messages).to include('Tel is invalid')
       end
       it '電話番号に半角数字以外が含まれている場合、登録できない' do
         @purchase_address.tel = '000rrrr0000'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Tel is invalid.')
+        expect(@purchase_address.errors.full_messages).to include('Tel is invalid')
       end
       it 'user_idが空だと登録できない' do
         @purchase_address.user_id = ''

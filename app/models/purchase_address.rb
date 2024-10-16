@@ -7,7 +7,7 @@ class PurchaseAddress
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city_and_town, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'Please use full-width characters only' }
     validates :number
-    validates :tel, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid.' }
+    validates :tel, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid' }
     validates :user_id, numericality: { message: "can't be blank" }
     validates :item_id, numericality: { message: "can't be blank" }
     validates :token
